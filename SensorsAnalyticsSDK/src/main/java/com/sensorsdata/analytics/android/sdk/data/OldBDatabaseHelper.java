@@ -51,8 +51,12 @@ public class OldBDatabaseHelper extends SQLiteOpenHelper {
             c = db.rawQuery(String.format("SELECT * FROM %s ORDER BY %s", DbParams.TABLE_EVENTS, DbParams.KEY_CREATED_AT), null);
             while (c.moveToNext()) {
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("created_at", c.getString(c.getColumnIndex("created_at")));
-                jsonObject.put("data", c.getString(c.getColumnIndex("data")));
+                final int created_at = c.getColumnIndex("created_at");
+                assert (created_at >= 0);
+                jsonObject.put("created_at", c.getString(created_at));
+                final int data = c.getColumnIndex("data");
+                assert (data >= 0);
+                jsonObject.put("data", c.getString(data));
                 arr.put(jsonObject);
             }
         } catch (Exception e) {

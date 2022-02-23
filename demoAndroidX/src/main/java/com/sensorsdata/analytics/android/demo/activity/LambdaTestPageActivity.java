@@ -355,7 +355,7 @@ public class LambdaTestPageActivity extends AppCompatActivity {
         //6,16
         AlertDialog dialog = new AlertDialog.Builder(this).setPositiveButton("", (dialog1, which) -> {
 
-        }).setMultiChoiceItems(1, null, (dialog12, which, isChecked) -> {
+        }).setMultiChoiceItems(android.R.array.phoneTypes, null, (dialog12, which, isChecked) -> {
 
         }).show();
 

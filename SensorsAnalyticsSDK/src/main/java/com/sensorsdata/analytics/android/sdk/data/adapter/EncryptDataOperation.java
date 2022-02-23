@@ -89,10 +89,14 @@ class EncryptDataOperation extends DataOperation {
                 final String PAYLOADS = "payloads";
                 while (cursor.moveToNext()) {
                     if (cursor.isLast()) {
-                        last_id = cursor.getString(cursor.getColumnIndex("_id"));
+                        final int id = cursor.getColumnIndex("_id");
+                        assert (id >= 0);
+                        last_id = cursor.getString(id);
                     }
                     try {
-                        keyData = cursor.getString(cursor.getColumnIndex(DbParams.KEY_DATA));
+                        final int columnIndex = cursor.getColumnIndex(DbParams.KEY_DATA);
+                        assert (columnIndex >= 0);
+                        keyData = cursor.getString(columnIndex);
                         keyData = parseData(keyData);
                         if (TextUtils.isEmpty(keyData)) {
                             continue;
